@@ -1,0 +1,43 @@
+[
+  {
+    "title": "Edinburgh",
+    "steps": [
+      {
+        "title": "Etymology",
+        "text": "Edin, the root of the city's name, derives from Eidyn, the name for this region in Cumbric, the Brittonic Celtic language formerly spoken there. The name's meaning is unknown. The district of Eidyn centred on the stronghold Din Eidyn, the dun or hillfort of Eidyn. This stronghold is believed to have been located at Castle Rock, now the site of Edinburgh Castle. Eidyn was conquered by the Angles of Bernicia in the 7th century and later occupied by the Scots in the 10th century. As the language shifted to Northumbrian Old English, which evolved into Scots, the Brittonic din in Din Eidyn was replaced by burh, producing Edinburgh. Similarly, din became dùn in Scottish Gaelic, producing Dùn Èideann",
+        "imgUrls": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Skyline_of_Edinburgh.jpg/1920px-Skyline_of_Edinburgh.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Edinburgh_Castle_%2829325995350%29.jpg/1280px-Edinburgh_Castle_%2829325995350%29.jpg"
+        ],
+        "audio": "step_1.mp3"
+      },
+      {
+        "title": "History",
+        "text": "The earliest known human habitation in the Edinburgh area was at Cramond, where evidence was found of a Mesolithic camp site dated to c. 8500 BC. Traces of later Bronze Age and Iron Age settlements have been found on Castle Rock, Arthur's Seat, Craiglockhart Hill and the Pentland Hills.\n\nWhen the Romans arrived in Lothian at the end of the 1st century AD, they found a Brittonic Celtic tribe whose name they recorded as the Votadini. The Votadini transitioned into the Gododdin kingdom in the Early Middle Ages, with Eidyn serving as one of the kingdom's districts. During this period, the Castle Rock site, thought to have been the stronghold of Din Eidyn, emerged as the kingdom's major centre. The medieval poem Y Gododdin describes a war band from across the Brittonic world who gathered in Eidyn before a fateful raid; this may describe a historical event around AD 600.",
+        "imgUrls": [
+          "https://upload.wikimedia.org/wikipedia/commons/1/1c/The_Parliament_Close_and_Public_Characters_Fifty_Years_Since.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/c/c4/Edinburgh_Castle_from_Grass_Market.jpg"
+        ],
+        "audio": "step_2.mp3"
+      },
+      {
+        "title": "Cityscape",
+        "text": "Situated in Scotland's Central Belt, Edinburgh lies on the southern shore of the Firth of Forth. The city centre is 2+1⁄2 miles (4.0 km) southwest of the shoreline of Leith and 26 miles (42 km) inland, as the crow flies, from the east coast of Scotland and the North Sea at Dunbar. While the early burgh grew up near the prominent Castle Rock, the modern city is often said to be built on seven hills, namely Calton Hill, Corstorphine Hill, Craiglockhart Hill, Braid Hill, Blackford Hill, Arthur's Seat and the Castle Rock, giving rise to allusions to the seven hills of Rome.",
+        "imgUrls": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Arthurs_seat_edinburgh.jpg/1280px-Arthurs_seat_edinburgh.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/3c/Surgeons_Hall_-_geograph.org.uk_-_1315862.jpg"
+        ],
+        "audio": "step_3.mp3"
+      },
+      {
+        "title": "Areas",
+        "text": "The historic centre of Edinburgh is divided in two by the broad green swathe of Princes Street Gardens. To the south, the view is dominated by Edinburgh Castle, built high on Castle Rock, and the long sweep of the Old Town descending towards Holyrood Palace. To the north lie Princes Street and the New Town.\n\nThe West End includes the financial district, with insurance and banking offices as well as the Edinburgh International Conference Centre.\n\nEdinburgh's Old and New Towns were listed as a UNESCO World Heritage Site in 1995 in recognition of the unique character of the Old Town with its medieval street layout and the planned Georgian New Town, including the adjoining Dean Village and Calton Hill areas. There are over 4,500 listed buildings within the city, a higher proportion relative to area than any other city in the United Kingdom.",
+        "imgUrls": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Edinburgh%2C_Scott_Monument_%2837z729400005%29.jpg/800px-Edinburgh%2C_Scott_Monument_%2837729400005%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Down_Princess_Street_%2813164361295%29.jpg/1280px-Down_Princess_Street_%2813164361295%29.jpg"
+        ],
+        "audio": "step_4.mp3"
+      }
+    ]
+  }
+]
