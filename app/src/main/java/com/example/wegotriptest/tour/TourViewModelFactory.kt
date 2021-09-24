@@ -1,7 +1,8 @@
-package com.example.wegotriptest
+package com.example.wegotriptest.tour
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.wegotriptest.Tour
 
 class TourViewModelFactory(private val tour: Tour) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")

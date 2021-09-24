@@ -1,14 +1,18 @@
 package com.example.wegotriptest
 
 import android.content.res.Resources
+import android.os.Parcelable
 import java.io.BufferedReader
 import java.util.ArrayList
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.parcelize.Parcelize
 
-data class TourStep(val title: String, val text: String, val imgUrls: ArrayList<String>, val audio: String)
+@Parcelize
+data class TourStep(val title: String, val text: String, val imgUrls: ArrayList<String>, val audio: String) : Parcelable
 
-data class Tour(val title: String, val steps: Array<TourStep>) {
+@Parcelize
+data class Tour(val title: String, val steps: Array<TourStep>) : Parcelable {
 
     companion object {
         /**

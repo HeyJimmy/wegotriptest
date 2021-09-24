@@ -1,4 +1,4 @@
-package com.example.wegotriptest
+package com.example.wegotriptest.tour
 
 import android.app.Application
 import android.os.Bundle
@@ -8,6 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.wegotriptest.R
+import com.example.wegotriptest.StepImageAdapter
+import com.example.wegotriptest.Tour
 import com.example.wegotriptest.databinding.FragmentTourBinding
 
 class TourFragment: Fragment() {
@@ -43,6 +47,20 @@ class TourFragment: Fragment() {
                 stepImageAdapter.renewItems(
                     viewModel.currentStep.imgUrls
                 )
+            }
+        })
+
+        // Click listeners
+        binding.audioPlayer.setOnClickListener {
+            viewModel.displayStepTourDetails()
+        }
+
+        viewModel.navigateToStepFragment.observe(viewLifecycleOwner, Observer {
+            if ( null != it ) {
+                this.findNavController().navigate(
+                    TourFragmentDirections.actionShowStep(tour, it)
+                )
+                viewModel.displayStepTourDetailsComplete()
             }
         })
 

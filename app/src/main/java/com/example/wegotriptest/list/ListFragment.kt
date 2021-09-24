@@ -1,4 +1,4 @@
-package com.example.wegotriptest
+package com.example.wegotriptest.list
 
 import androidx.fragment.app.Fragment
 

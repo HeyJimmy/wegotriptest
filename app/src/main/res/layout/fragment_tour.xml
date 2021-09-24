@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_gravity="center">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
-            type="com.example.wegotriptest.TourViewModel" />
+            type="com.example.wegotriptest.tour.TourViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,9 +48,8 @@
         <com.smarteist.autoimageslider.SliderView
             android:id="@+id/image_slider"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/audio_player"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -85,38 +82,35 @@
                 android:id="@+id/button_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
                 android:src="@android:drawable/ic_media_play" />
 
             <TextView
                 android:id="@+id/player_step_title"
                 android:layout_width="220dp"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:padding="16dp"
-                android:textAlignment="gravity"
-                android:textSize="20sp"
                 android:textColor="#de000000"
+                android:textSize="20sp"
                 tools:text="Step Title" />
 
             <ImageButton
                 android:id="@+id/button_backward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginEnd="4dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
                 android:src="@android:drawable/ic_media_rew" />
 
             <ImageButton
                 android:id="@+id/button_forward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
                 android:src="@android:drawable/ic_media_ff" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

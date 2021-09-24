@@ -25,34 +25,38 @@
 
     <fragment
         android:id="@+id/tourFragment"
-        android:name="com.example.wegotriptest.TourFragment"
+        android:name="com.example.wegotriptest.tour.TourFragment"
         android:label="fragment_tour"
         tools:layout="@layout/fragment_tour" >
         <action
             android:id="@+id/action_showStep"
-            app:destination="@id/stepFragment" />
+            app:destination="@id/stepFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top" />
     </fragment>
 
     <fragment
         android:id="@+id/stepFragment"
-        android:name="com.example.wegotriptest.StepFragment"
+        android:name="com.example.wegotriptest.step.StepFragment"
         android:label="fragment_step"
         tools:layout="@layout/fragment_step">
-        <!--argument
-            android:name="currentStep"
-            app:argType="com.example.wegotriptest.TourStep"
-            /-->
         <action
             android:id="@+id/action_showList"
             app:destination="@id/listFragment" />
         <action
             android:id="@+id/action_returnToTour"
             app:destination="@id/tourFragment" />
+        <argument
+            android:name="tour"
+            app:argType="com.example.wegotriptest.Tour" />
+        <argument
+            android:name="stepIndex"
+            app:argType="integer" />
     </fragment>
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.wegotriptest.ListFragment"
+        android:name="com.example.wegotriptest.list.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list">
         <!--argument
