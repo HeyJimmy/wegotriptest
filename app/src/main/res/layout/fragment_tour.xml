@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.wegotriptest.TourViewModel" />
@@ -14,34 +15,59 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tour_title"
-            android:layout_width="wrap_content"
+            android:id="@+id/step_label"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@{viewModel.currentStep.title}"
-            android:textColor="#de000000"
-            android:textSize="39sp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/tour_step_image"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:textColor="#555555"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/tour_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Tour Description" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="3 / 10" />
 
-        <ImageView
-            android:id="@+id/tour_step_image"
+        <TextView
+            android:id="@+id/tour_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:textColor="#de000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/imageSlider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/step_label"
+            tools:text="Tour Title" />
+
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/imageSlider"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginTop="104dp"
-            android:adjustViewBounds="true"
-            android:padding="2dp"
-            android:scaleType="centerCrop"
-            app:imageUrl="@{viewModel.currentStep.imgUrls[0]}"
+            android:layout_height="400dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tour_title"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            app:sliderAnimationDuration="600"
+            app:sliderAutoCycleEnabled="false"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorMargin="15dp"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="3dp"
+            app:sliderIndicatorRadius="2dp"
+            app:sliderIndicatorSelectedColor="#5A5A5A"
+            app:sliderIndicatorUnselectedColor="#FFF"
+            app:sliderScrollTimeInSec="1"
+            app:sliderStartAutoCycle="false" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
