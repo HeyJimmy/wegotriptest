@@ -1,5 +1,6 @@
 package com.example.wegotriptest
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,24 +11,24 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.wegotriptest.databinding.FragmentTourBinding
 
 class TourFragment: Fragment() {
-    private val viewModel: TourViewModel by lazy {
-        ViewModelProvider(this).get(TourViewModel::class.java)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val application = requireNotNull(activity).application
+        val application: Application = requireNotNull(activity).application
         val binding = FragmentTourBinding.inflate(inflater)
 
         binding.lifecycleOwner = this
+
+        // For now just take the first tour
+        val tour = Tour.initTourList(resources).first()
+
+        val viewModelFactory = TourViewModelFactory(tour)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(TourViewModel::class.java)
         binding.viewModel = viewModel
 
         // Image slider
         val stepImageAdapter = StepImageAdapter()
         binding.imageSlider.setSliderAdapter(stepImageAdapter)
-
-        // Mock tour data
-        viewModel.initTours(Tour.initTourList(resources))
 
         // Update step data
         viewModel.stepIndex.observe(viewLifecycleOwner, Observer { stepIndex ->
@@ -36,10 +37,11 @@ class TourFragment: Fragment() {
                     R.string.step_label,stepIndex + 1, viewModel.stepsCount
                 )
 
-                binding.tourTitle.text = viewModel.currentStep!!.title
+                binding.stepTitle.text = viewModel.currentStep.title
+                binding.playerStepTitle.text = viewModel.currentStep.title
 
                 stepImageAdapter.renewItems(
-                    viewModel.currentStep!!.imgUrls
+                    viewModel.currentStep.imgUrls
                 )
             }
         })

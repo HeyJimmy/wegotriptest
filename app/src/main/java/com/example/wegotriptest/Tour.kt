@@ -1,8 +1,6 @@
 package com.example.wegotriptest
 
 import android.content.res.Resources
-import android.os.Parcel
-import android.os.Parcelable
 import java.io.BufferedReader
 import java.util.ArrayList
 import com.google.gson.Gson

@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">WeGoTripTest</string>
-    <string name="image_description">Tour Image</string>
     <string name="step_label">STEP %d/%d</string>
 </resources>
