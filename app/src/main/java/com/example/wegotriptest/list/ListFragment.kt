@@ -1,5 +1,6 @@
 package com.example.wegotriptest.list
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,15 +15,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.wegotriptest.R
 import com.example.wegotriptest.databinding.FragmentListBinding
-import com.example.wegotriptest.step.*
 import com.example.wegotriptest.tour.TourViewModel
 import com.example.wegotriptest.tour.TourViewModelFactory
 
 class ListFragment: Fragment() {
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         Log.i("CREATION", "Create list fragment")
+        val application: Application = requireNotNull(activity).application
         val binding = FragmentListBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
@@ -42,12 +44,19 @@ class ListFragment: Fragment() {
             }
         }
 
+//        binding.stepList.adapter = StepListAdapter(StepListAdapter.OnClickListener {
+//            viewModel.changeStep(it)
+//        })
+        val stepListAdapter = StepListAdapter(viewModel.tour.steps)
+        binding.stepList.adapter = stepListAdapter
+
         // Update step data
         viewModel.stepIndex.observe(viewLifecycleOwner, Observer { stepIndex ->
             if ( null != stepIndex ) {
                 val tourTitle = binding.appBar.findViewById<TextView>(R.id.tour_title)
                 tourTitle.text = viewModel.tour.title
-                // add other bindings
+
+                stepListAdapter.renewItems(viewModel.tour.steps)
             }
         })
 

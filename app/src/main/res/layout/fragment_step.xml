@@ -6,7 +6,6 @@
     android:layout_margin="5dp">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.wegotriptest.tour.TourViewModel" />

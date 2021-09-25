@@ -13,6 +13,7 @@ class TourViewModel(val tour: Tour, step: Int = 0): ViewModel()  {
     private val _navigateToFragment = MutableLiveData<String>()
     val navigateToFragment: LiveData<String>
         get() = _navigateToFragment
+
     init {
         _stepIndex.value = step
     }
@@ -26,5 +27,11 @@ class TourViewModel(val tour: Tour, step: Int = 0): ViewModel()  {
 
     fun navigateComplete() {
         _navigateToFragment.value = null
+    }
+
+    fun changeStep(newStepIndex: Int) {
+        if (newStepIndex >=0 && newStepIndex < stepsCount) {
+            _stepIndex.value = newStepIndex
+        }
     }
 }
