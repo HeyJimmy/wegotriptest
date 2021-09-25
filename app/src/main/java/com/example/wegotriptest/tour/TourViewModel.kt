@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import com.example.wegotriptest.Tour
 import com.example.wegotriptest.TourStep
 
-class TourViewModel(tour: Tour): ViewModel()  {
+class TourViewModel(tour: Tour, step: Int = 0): ViewModel()  {
 
     private val _stepIndex = MutableLiveData<Int>()
     val stepIndex: LiveData<Int>
@@ -15,17 +15,17 @@ class TourViewModel(tour: Tour): ViewModel()  {
         get() = _navigateToStepFragment
 
     init {
-        _stepIndex.value = 0
+        _stepIndex.value = step
     }
 
     val currentStep: TourStep = tour.steps[stepIndex.value ?: 0]
     var stepsCount: Int = tour.steps.size
 
-    fun displayStepTourDetails() {
+    fun displayStepTour() {
         _navigateToStepFragment.value = stepIndex.value
     }
 
-    fun displayStepTourDetailsComplete() {
+    fun displayStepTourComplete() {
         _navigateToStepFragment.value = null
     }
 }

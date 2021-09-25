@@ -31,8 +31,13 @@
         <action
             android:id="@+id/action_showStep"
             app:destination="@id/stepFragment"
-            app:enterAnim="@anim/slide_in_bottom"
-            app:exitAnim="@anim/slide_out_top" />
+            app:enterAnim="@anim/slide_in_bottom" />
+        <argument
+            android:name="tour"
+            app:argType="com.example.wegotriptest.Tour" />
+        <argument
+            android:name="stepIndex"
+            app:argType="integer" />
     </fragment>
 
     <fragment
@@ -42,7 +47,8 @@
         tools:layout="@layout/fragment_step">
         <action
             android:id="@+id/action_showList"
-            app:destination="@id/listFragment" />
+            app:destination="@id/listFragment"
+            app:enterAnim="@anim/slide_in_bottom" />
         <action
             android:id="@+id/action_returnToTour"
             app:destination="@id/tourFragment" />
@@ -59,12 +65,19 @@
         android:name="com.example.wegotriptest.list.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list">
-        <!--argument
-            android:name="currentStep"
-            app:argType="com.example.wegotriptest.TourStep"
-            /-->
         <action
             android:id="@+id/action_returnToStep"
-            app:destination="@id/stepFragment" />
+            app:destination="@id/stepFragment"
+            app:enterAnim="@anim/slide_in_bottom" />
+        <action
+            android:id="@+id/action_returnToTour"
+            app:destination="@id/tourFragment" />
+        <argument
+            android:name="tour"
+            app:argType="com.example.wegotriptest.Tour" />
+        <argument
+            android:name="stepIndex"
+            app:argType="integer" />
+
     </fragment>
 </navigation>

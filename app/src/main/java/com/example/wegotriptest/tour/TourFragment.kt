@@ -2,6 +2,7 @@ package com.example.wegotriptest.tour
 
 import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ class TourFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        Log.i("CREATION", "Create tour fragment")
         val application: Application = requireNotNull(activity).application
         val binding = FragmentTourBinding.inflate(inflater)
 
@@ -52,7 +54,7 @@ class TourFragment: Fragment() {
 
         // Click listeners
         binding.audioPlayer.setOnClickListener {
-            viewModel.displayStepTourDetails()
+            viewModel.displayStepTour()
         }
 
         viewModel.navigateToStepFragment.observe(viewLifecycleOwner, Observer {
@@ -60,7 +62,7 @@ class TourFragment: Fragment() {
                 this.findNavController().navigate(
                     TourFragmentDirections.actionShowStep(tour, it)
                 )
-                viewModel.displayStepTourDetailsComplete()
+                viewModel.displayStepTourComplete()
             }
         })
 
