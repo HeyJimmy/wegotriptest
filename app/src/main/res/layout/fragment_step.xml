@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.wegotriptest.step.StepViewModel" />
+            type="com.example.wegotriptest.tour.TourViewModel" />
     </data>
 
     <com.google.android.material.appbar.AppBarLayout

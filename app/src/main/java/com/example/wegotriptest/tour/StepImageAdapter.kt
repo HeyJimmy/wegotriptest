@@ -1,9 +1,10 @@
-package com.example.wegotriptest
+package com.example.wegotriptest.tour
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.example.wegotriptest.R
 import com.smarteist.autoimageslider.SliderViewAdapter
 import com.squareup.picasso.Picasso
 import java.util.*

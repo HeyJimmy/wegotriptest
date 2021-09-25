@@ -10,10 +10,9 @@ class TourViewModel(tour: Tour, step: Int = 0): ViewModel()  {
     val stepIndex: LiveData<Int>
         get() = _stepIndex
 
-    private val _navigateToStepFragment = MutableLiveData<Int>()
-    val navigateToStepFragment: LiveData<Int>
-        get() = _navigateToStepFragment
-
+    private val _navigateToFragment = MutableLiveData<String>()
+    val navigateToFragment: LiveData<String>
+        get() = _navigateToFragment
     init {
         _stepIndex.value = step
     }
@@ -21,11 +20,11 @@ class TourViewModel(tour: Tour, step: Int = 0): ViewModel()  {
     val currentStep: TourStep = tour.steps[stepIndex.value ?: 0]
     var stepsCount: Int = tour.steps.size
 
-    fun displayStepTour() {
-        _navigateToStepFragment.value = stepIndex.value
+    fun navigateTo(fragmentName: String) {
+        _navigateToFragment.value = fragmentName
     }
 
-    fun displayStepTourComplete() {
-        _navigateToStepFragment.value = null
+    fun navigateComplete() {
+        _navigateToFragment.value = null
     }
 }

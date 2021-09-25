@@ -14,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.wegotriptest.R
 import com.example.wegotriptest.databinding.FragmentListBinding
 import com.example.wegotriptest.step.*
+import com.example.wegotriptest.tour.TourViewModel
+import com.example.wegotriptest.tour.TourViewModelFactory
 
 class ListFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +28,8 @@ class ListFragment: Fragment() {
         val tour = ListFragmentArgs.fromBundle(requireArguments()).tour
         val stepIndex = ListFragmentArgs.fromBundle(requireArguments()).stepIndex
 
-        val viewModelFactory = ListViewModelFactory(tour, stepIndex)
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(ListViewModel::class.java)
+        val viewModelFactory = TourViewModelFactory(tour, stepIndex)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(TourViewModel::class.java)
         binding.viewModel = viewModel
 
         (activity as AppCompatActivity).let {

@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.wegotriptest.R
-import com.example.wegotriptest.StepImageAdapter
 import com.example.wegotriptest.Tour
 import com.example.wegotriptest.databinding.FragmentTourBinding
 
@@ -22,13 +21,20 @@ class TourFragment: Fragment() {
         Log.i("CREATION", "Create tour fragment")
         val application: Application = requireNotNull(activity).application
         val binding = FragmentTourBinding.inflate(inflater)
-
         binding.lifecycleOwner = this
 
-        // For now just take the first tour
-        val tour = Tour.initTourList(resources).first()
+        var tour: Tour
+        var stepIndex: Int
 
-        val viewModelFactory = TourViewModelFactory(tour)
+        try {
+            tour = TourFragmentArgs.fromBundle(requireArguments()).tour
+            stepIndex = TourFragmentArgs.fromBundle(requireArguments()).stepIndex
+        } catch (e: IllegalArgumentException) { // TODO: Make it beautiful
+            tour = Tour.initTourList(resources).first()
+            stepIndex = 0
+        }
+
+        val viewModelFactory = TourViewModelFactory(tour, stepIndex)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(TourViewModel::class.java)
         binding.viewModel = viewModel
 
@@ -54,15 +60,15 @@ class TourFragment: Fragment() {
 
         // Click listeners
         binding.audioPlayer.setOnClickListener {
-            viewModel.displayStepTour()
+            viewModel.navigateTo("step")
         }
 
-        viewModel.navigateToStepFragment.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToFragment.observe(viewLifecycleOwner, Observer {
             if ( null != it ) {
                 this.findNavController().navigate(
-                    TourFragmentDirections.actionShowStep(tour, it)
+                    TourFragmentDirections.actionShowStep(tour, viewModel.stepIndex.value!!)
                 )
-                viewModel.displayStepTourComplete()
+                viewModel.navigateComplete()
             }
         })
 
