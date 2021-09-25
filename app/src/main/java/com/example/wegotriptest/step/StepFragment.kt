@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -38,6 +39,17 @@ class StepFragment: Fragment() {
             }
         }
 
+        // Update step data
+        viewModel.stepIndex.observe(viewLifecycleOwner, Observer { stepIndex ->
+            if ( null != stepIndex ) {
+                val tourTitle = binding.appBar.findViewById<TextView>(R.id.tour_title)
+                tourTitle.text = viewModel.tour.title
+                binding.playerStepTitle.text = viewModel.currentStep.title
+                binding.stepText.text = viewModel.currentStep.text
+            }
+        })
+
+        // Click listeners
         binding.appBar.setNavigationOnClickListener {
             viewModel.navigateTo("tour")
         }

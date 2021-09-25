@@ -17,15 +17,14 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/app_bar"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#AAAAAAAA"
             android:paddingStart="12dp"
             android:paddingLeft="12dp"
             android:paddingEnd="12dp"
             android:paddingRight="12dp"
             app:contentInsetStart="0dp"
-            app:navigationIcon="@android:drawable/arrow_down_float"
-            app:title="LIST FRAGMENT" />
+            app:navigationIcon="@android:drawable/arrow_down_float"/>
+
     </com.google.android.material.appbar.AppBarLayout>
 </layout>
