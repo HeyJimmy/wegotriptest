@@ -1,4 +1,4 @@
-# wegotriptest
+# WeGoTrip
 Не успела сделать:
 1. MediaBrowserService 
    Плеер работает только на первом экране
