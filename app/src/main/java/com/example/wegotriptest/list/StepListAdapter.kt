@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.wegotriptest.R
 import com.example.wegotriptest.TourStep
 
-class StepListAdapter(private var steps: Array<TourStep>) : RecyclerView.Adapter<StepListAdapter.StepListHolder>() {
+class StepListAdapter(private var steps: Array<TourStep>, val onClickListener: OnClickListener)
+    : RecyclerView.Adapter<StepListAdapter.StepListHolder>() {
 
     fun renewItems(newSteps: Array<TourStep>) {
         steps = newSteps
@@ -24,22 +25,21 @@ class StepListAdapter(private var steps: Array<TourStep>) : RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: StepListHolder, position: Int) {
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(position)
+        }
         holder.bindStep(steps, position)
     }
 
     override fun getItemCount(): Int = steps.size
 
-    class StepListHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
+    class OnClickListener(val clickListener: (position: Int) -> Unit) {
+        fun onClick(position: Int) = clickListener(position)
+    }
+
+    class StepListHolder(v: View) : RecyclerView.ViewHolder(v) {
         private var view: View = v
         private var step: TourStep? = null
-
-        init {
-            view.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View) {
-            Log.i("CREATION", step!!.title)
-        }
 
         fun bindStep(steps: Array<TourStep>, position: Int) {
             this.step = steps[position]

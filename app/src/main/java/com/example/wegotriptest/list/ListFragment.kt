@@ -1,6 +1,5 @@
 package com.example.wegotriptest.list
 
-import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,13 +17,13 @@ import com.example.wegotriptest.databinding.FragmentListBinding
 import com.example.wegotriptest.tour.TourViewModel
 import com.example.wegotriptest.tour.TourViewModelFactory
 
-class ListFragment: Fragment() {
+class ListFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
-        Log.i("CREATION", "Create list fragment")
-        val application: Application = requireNotNull(activity).application
         val binding = FragmentListBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
@@ -44,21 +43,13 @@ class ListFragment: Fragment() {
             }
         }
 
-//        binding.stepList.adapter = StepListAdapter(StepListAdapter.OnClickListener {
-//            viewModel.changeStep(it)
-//        })
-        val stepListAdapter = StepListAdapter(viewModel.tour.steps)
+        val stepListAdapter =
+            StepListAdapter(viewModel.tour.steps, StepListAdapter.OnClickListener {
+                viewModel.changeStep(it)
+                viewModel.navigateTo("tour")
+            })
+
         binding.stepList.adapter = stepListAdapter
-
-        // Update step data
-        viewModel.stepIndex.observe(viewLifecycleOwner, Observer { stepIndex ->
-            if ( null != stepIndex ) {
-                val tourTitle = binding.appBar.findViewById<TextView>(R.id.tour_title)
-                tourTitle.text = viewModel.tour.title
-
-                stepListAdapter.renewItems(viewModel.tour.steps)
-            }
-        })
 
         // Click listeners
         binding.appBar.setNavigationOnClickListener {
@@ -70,13 +61,32 @@ class ListFragment: Fragment() {
             viewModel.navigateTo("tour")
         }
 
+        // Observers
+        viewModel.stepIndex.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                val tourTitle = binding.appBar.findViewById<TextView>(R.id.tour_title)
+                tourTitle.text = viewModel.tour.title
+
+                stepListAdapter.renewItems(viewModel.tour.steps)
+            }
+        })
+
         viewModel.navigateToFragment.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 this.findNavController().navigate(
-                    when(it) {
-                        "tour" -> ListFragmentDirections.actionReturnToTour(tour, stepIndex)
-                        "step" -> ListFragmentDirections.actionReturnToStep(tour, stepIndex)
-                        else -> ListFragmentDirections.actionReturnToTour(tour, stepIndex)
+                    when (it) {
+                        "tour" -> ListFragmentDirections.actionReturnToTour(
+                            tour,
+                            viewModel.stepIndex.value!!
+                        )
+                        "step" -> ListFragmentDirections.actionReturnToStep(
+                            tour,
+                            viewModel.stepIndex.value!!
+                        )
+                        else -> ListFragmentDirections.actionReturnToTour(
+                            tour,
+                            viewModel.stepIndex.value!!
+                        )
                     }
                 )
                 viewModel.navigateComplete()

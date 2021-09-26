@@ -15,11 +15,12 @@ import com.example.wegotriptest.databinding.FragmentStepBinding
 import com.example.wegotriptest.tour.TourViewModel
 import com.example.wegotriptest.tour.TourViewModelFactory
 
-class StepFragment: Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+class StepFragment : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        Log.i("CREATION", "Create step fragment")
         val binding = FragmentStepBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
@@ -39,16 +40,6 @@ class StepFragment: Fragment() {
             }
         }
 
-        // Update step data
-        viewModel.stepIndex.observe(viewLifecycleOwner, Observer { stepIndex ->
-            if ( null != stepIndex ) {
-                val tourTitle = binding.appBar.findViewById<TextView>(R.id.tour_title)
-                tourTitle.text = viewModel.tour.title
-                binding.playerStepTitle.text = viewModel.currentStep.title
-                binding.stepText.text = viewModel.currentStep.text
-            }
-        })
-
         // Click listeners
         binding.appBar.setNavigationOnClickListener {
             viewModel.navigateTo("tour")
@@ -59,13 +50,32 @@ class StepFragment: Fragment() {
             viewModel.navigateTo("list")
         }
 
+        // Observers
+        viewModel.stepIndex.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                val tourTitle = binding.appBar.findViewById<TextView>(R.id.tour_title)
+                tourTitle.text = viewModel.tour.title
+                binding.playerStepTitle.text = viewModel.currentStep.title
+                binding.stepText.text = viewModel.currentStep.text
+            }
+        })
+
         viewModel.navigateToFragment.observe(viewLifecycleOwner, Observer {
-            if ( null != it ) {
+            if (null != it) {
                 this.findNavController().navigate(
-                    when(it) {
-                        "tour" -> StepFragmentDirections.actionReturnToTour(tour, stepIndex)
-                        "list" -> StepFragmentDirections.actionShowList(tour, stepIndex)
-                        else -> StepFragmentDirections.actionReturnToTour(tour, stepIndex)
+                    when (it) {
+                        "tour" -> StepFragmentDirections.actionReturnToTour(
+                            tour,
+                            viewModel.stepIndex.value!!
+                        )
+                        "list" -> StepFragmentDirections.actionShowList(
+                            tour,
+                            viewModel.stepIndex.value!!
+                        )
+                        else -> StepFragmentDirections.actionReturnToTour(
+                            tour,
+                            viewModel.stepIndex.value!!
+                        )
                     }
                 )
                 viewModel.navigateComplete()

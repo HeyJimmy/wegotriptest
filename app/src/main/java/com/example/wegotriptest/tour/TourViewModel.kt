@@ -1,5 +1,6 @@
 package com.example.wegotriptest.tour
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.wegotriptest.Tour
 import com.example.wegotriptest.TourStep
@@ -30,7 +31,7 @@ class TourViewModel(val tour: Tour, step: Int = 0): ViewModel()  {
     }
 
     fun changeStep(newStepIndex: Int) {
-        if (newStepIndex >=0 && newStepIndex < stepsCount) {
+        if (newStepIndex in 0 until stepsCount && newStepIndex != _stepIndex.value) {
             _stepIndex.value = newStepIndex
         }
     }

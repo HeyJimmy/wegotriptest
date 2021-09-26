@@ -30,8 +30,7 @@
         tools:layout="@layout/fragment_tour" >
         <action
             android:id="@+id/action_showStep"
-            app:destination="@id/stepFragment"
-            app:enterAnim="@anim/slide_in_bottom" />
+            app:destination="@id/stepFragment" />
         <argument
             android:name="tour"
             app:argType="com.example.wegotriptest.Tour" />
@@ -47,8 +46,7 @@
         tools:layout="@layout/fragment_step">
         <action
             android:id="@+id/action_showList"
-            app:destination="@id/listFragment"
-            app:enterAnim="@anim/slide_in_bottom" />
+            app:destination="@id/listFragment" />
         <action
             android:id="@+id/action_returnToTour"
             app:destination="@id/tourFragment" />
@@ -67,8 +65,7 @@
         tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_returnToStep"
-            app:destination="@id/stepFragment"
-            app:enterAnim="@anim/slide_in_bottom" />
+            app:destination="@id/stepFragment" />
         <action
             android:id="@+id/action_returnToTour"
             app:destination="@id/tourFragment" />

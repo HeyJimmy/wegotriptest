@@ -14,11 +14,13 @@ import com.example.wegotriptest.R
 import com.example.wegotriptest.Tour
 import com.example.wegotriptest.databinding.FragmentTourBinding
 
-class TourFragment: Fragment() {
+class TourFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        Log.i("CREATION", "Create tour fragment")
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
         val application: Application = requireNotNull(activity).application
         val binding = FragmentTourBinding.inflate(inflater)
         binding.lifecycleOwner = this
@@ -42,11 +44,16 @@ class TourFragment: Fragment() {
         val stepImageAdapter = StepImageAdapter()
         binding.imageSlider.setSliderAdapter(stepImageAdapter)
 
-        // Update step data
-        viewModel.stepIndex.observe(viewLifecycleOwner, Observer { stepIndex ->
-            if ( null != stepIndex ) {
+        // Click listeners
+        binding.audioPlayer.setOnClickListener {
+            viewModel.navigateTo("step")
+        }
+
+        // Observers
+        viewModel.stepIndex.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
                 binding.stepLabel.text = application.applicationContext.getString(
-                    R.string.step_label,stepIndex + 1, viewModel.stepsCount
+                    R.string.step_label, it + 1, viewModel.stepsCount
                 )
 
                 binding.stepTitle.text = viewModel.currentStep.title
@@ -58,13 +65,8 @@ class TourFragment: Fragment() {
             }
         })
 
-        // Click listeners
-        binding.audioPlayer.setOnClickListener {
-            viewModel.navigateTo("step")
-        }
-
         viewModel.navigateToFragment.observe(viewLifecycleOwner, Observer {
-            if ( null != it ) {
+            if (null != it) {
                 this.findNavController().navigate(
                     TourFragmentDirections.actionShowStep(tour, viewModel.stepIndex.value!!)
                 )
